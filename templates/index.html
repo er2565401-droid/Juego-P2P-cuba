@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <link rel="manifest" href="data:application/json,{
+  'name': 'Tu Juego P2P',
+  'short_name': 'JuegoP2P',
+  'start_url': '/',
+  'display': 'standalone',
+  'background_color': '#ffffff',
+  'theme_color': '#25d366'
+}">
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juego P2P - Registro</title>
@@ -20,5 +29,28 @@
             <button type="submit">Registrarse y Contactar al Admin</button>
         </form>
     </div>
+    <button onclick="instalarApp()" style="padding: 15px; background: #007bff; color: white; border: none; border-radius: 10px; margin-top: 20px;">
+  Instalar App en mi celular
+    </button>
+    <script>
+  let deferredPrompt;
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    // Aquí puedes mostrar un botón propio si quieres
+    console.log('App lista para instalar');
+  });
+
+  // Función para disparar la instalación
+  function instalarApp() {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then((choiceResult) => {
+        deferredPrompt = null;
+      });
+    }
+  }
+    </script>
+    
 </body>
-</html>
+</</html>
