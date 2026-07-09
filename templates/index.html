@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego P2P - Registro</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 20px; background: #f4f4f4; }
+        .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        input { width: 90%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; }
+        button { background: #25d366; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Bienvenido al Juego</h2>
+        <p>Registra tu usuario para comenzar.</p>
+        <form action="/registrar" method="POST">
+            <input type="text" name="username" placeholder="Tu nombre de usuario" required>
+            <button type="submit">Registrarse y Contactar al Admin</button>
+        </form>
+    </div>
+</body>
+</html>
