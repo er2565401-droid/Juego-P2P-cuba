@@ -4,7 +4,7 @@ import requests
 app = Flask(__name__)
 
 # PEGA AQUÍ LA URL QUE COPIASTE DE GOOGLE SCRIPT
-GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwO1RH1mb8adDdz4gE0H0FWyxKKMbZE9hJIi62zvYYPZ2Ndi-HFxy0__0-78VD3W-bE/exec"
+GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzWOrDS82UGQJJfC-e3sWX751qdiMkZlWoJEgqntQroFgJNUh73o5FCfdbedkrrVTcP/exec"
 
 @app.route('/')
 def home():
