@@ -1,30 +1,31 @@
 from flask import Flask, render_template, request
+import json
+import os
 
 app = Flask(__name__)
+DB_FILE = 'usuarios.json'
 
-# Ruta principal: Muestra el formulario de registro
+def cargar_usuarios():
+    if not os.path.exists(DB_FILE): return {}
+    with open(DB_FILE, 'r') as f: return json.load(f)
+
+def guardar_usuario(username):
+    usuarios = cargar_usuarios()
+    usuarios[username] = {"status": "pendiente", "creditos": 0}
+    with open(DB_FILE, 'w') as f: json.dump(usuarios, f)
+
 @app.route('/')
 def home():
     return render_template('index.html')
 
-# Ruta de registro: Recibe los datos del formulario
 @app.route('/registrar', methods=['POST'])
 def registrar():
     username = request.form.get('username')
-    # Aquí puedes añadir lógica para guardar el usuario en una base de datos más adelante
-    
-    # Redirige al usuario a tu WhatsApp con un mensaje predeterminado
-    # Cambia 5351234567 por tu número real en formato internacional
-    wa_link = f"https://wa.me/55998674?text=Hola, quiero activar mi cuenta. Mi usuario es: {username}"
-    
-    return f"""
-    <h1>Registro casi listo, {username}!</h1>
-    <p>Para activar tu cuenta, haz clic en el siguiente botón:</p>
-    <a href='{wa_link}' style='padding: 10px; background: #25d366; color: white; text-decoration: none; border-radius: 5px;'>
-        Activar por WhatsApp
-    </a>
-    """
+    guardar_usuario(username)
+    wa_link = f"https://wa.me/5351234567?text=Hola, quiero activar mi usuario: {username}"
+    return f"<h1>Registrado, {username}!</h1><a href='{wa_link}'>Click aquí para activar por WhatsApp</a>"
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=10000)
+    
     
